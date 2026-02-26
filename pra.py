@@ -1,36 +1,42 @@
-import os
-os.system('cls')
+import subprocess
+subprocess.run("cls", shell=True)
 
 def registro_pedido(cliente="Consumidor Final", descuento=0, **productos):
     total = 0
-   
-    print("----- PEDIDO -----")
-    print("Cliente:", cliente)
-    print("------------------")
 
-    for nombre, datos in productos.items():
-        direccion, telefono, cantidad, precio = datos
+    cliente = input("cliente: ")
+    direccion = input("direccion: ")
+    telefono =input("telefono: ")
+
+    c_productos = int(input("cuantos productos va a ingresar: "))
+    
+    for i in range(c_productos):
+        print(f"\nProducto {i+1}")
+        nombre=input("Articulo: ")
+        cantidad = int(input("cantidad de articulos: "))
+        precio = int(input("precio del articulo: "))
+
         subtotal = cantidad * precio
         total += subtotal
 
-        
-        print(f"direccion: {direccion}")
-        print(f"telefono: {telefono}")
-        print(f"Artículo: {nombre}")
-        print(f"Cantidad: {cantidad}")
-        print(f"Precio unitario: ${precio}")
-        print(f"Subtotal: ${subtotal}")
-        print("------------------")
+        print("---------------")
+        print("Artículo:", nombre)
+        print("Cantidad:", cantidad)
+        print("Precio unitario: $", precio)
+        print("Subtotal: $", subtotal)
+        print("---------------")
+    
+    descuento = float(input("\nDescuento: "))
 
     total_final = total - descuento
-    
+
+    print("\n===== FACTURA =====")
+    print("Cliente:", cliente)
+    print("Dirección:", direccion)
+    print("Teléfono:", telefono)
     print("Subtotal:", total)
     print("Descuento:", descuento)
     print("TOTAL A PAGAR:", total_final)
 
-registro_pedido(
-    cliente="Carlos",
-    descuento=10,
-    arroz=("bicentenario","12783012",2, 20),
-    
-)
+registro_pedido()
+
